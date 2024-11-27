@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editTextText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.192" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="ortalama"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.846"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.122" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046" />
+
+    <EditText
+        android:id="@+id/editTextText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.112" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.316" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+package com.example.myapplication5345353;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+    EditText edt1;
+    EditText edt2;
+    EditText edt3;
+    TextView txt1;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        edt1 = findViewById(R.id.editTextText);
+        edt2 = findViewById(R.id.editTextText2);
+        edt3 = findViewById(R.id.editTextText3);
+        txt1 = findViewById(R.id.textView);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+    }
+    public void asd(View view)
+    {
+        int sayi = Integer.valueOf(edt1.getText().toString());
+        if (sayi>100)
+        {
+            Toast.makeText(this,"sayi yuzden buyuk olamas",Toast.LENGTH_SHORT).show();
+            txt1.setText("sayi yuzden buyuk olamas");
+        }
+        if (sayi<100)
+        {
+            Toast.makeText(this, "sayi yuzden kucukte olamas", Toast.LENGTH_SHORT).show();
+            txt1.setText("sayi yuzden kucukte olamas");
+        }
+        if (sayi==100)
+        {
+            Toast.makeText(this, "sayi yuze esitte olamaz", Toast.LENGTH_SHORT).show();
+            txt1.setText("sayi yuze esitte olamas");
+        }
+
+    }
+
+    public void sibop(View view)
+    {
+        String isim = edt1.getText().toString();
+        String sifre = edt2.getText().toString();
+        if (isim.equals("admin")&sifre.equals("admin"))
+        {
+            Toast.makeText(this, "dogru", Toast.LENGTH_SHORT).show();
+            txt1.setText("dogru");
+        }
+        else
+        {
+            Toast.makeText(this, "yanlis", Toast.LENGTH_SHORT).show();
+            txt1.setText("yanlis");
+        }
+    }
+    public void ortalama(View view)
+    {
+        int not1 = Integer.valueOf(edt1.getText().toString());
+        int not2 = Integer.valueOf(edt2.getText().toString());
+        int not3 = Integer.valueOf(edt3.getText().toString());
+        int ort = (not1+not2+not3)/3;
+        if (ort<=25)
+        {
+            Toast.makeText(this, "kaldi 1 ortalama : "+ort, Toast.LENGTH_SHORT).show();
+            txt1.setText("kaldi 1 ortalama : "+ort);
+        } else if (ort<50)
+        {
+            Toast.makeText(this, "kaldi 2 ortalama : "+ort, Toast.LENGTH_SHORT).show();
+            txt1.setText("kaldi 2 ortalama : "+ort);
+        } else if (ort<70)
+        {
+            Toast.makeText(this, "gecti 3 ortalama : "+ort, Toast.LENGTH_SHORT).show();
+            txt1.setText("gecti 3 ortalama : "+ort);
+        } else if (ort<85) {
+            Toast.makeText(this, "gecti 4 ortalama : "+ort, Toast.LENGTH_SHORT).show();
+            txt1.setText("gecti 4 ortalama : "+ort);
+        } else if (ort<=100) {
+            Toast.makeText(this, "gecti 5 ortalama : "+ort, Toast.LENGTH_SHORT).show();
+            txt1.setText("gecti 5 ortalama : "+ort);
+        }
+    }
+}
+
+
+
+
+
+
+
